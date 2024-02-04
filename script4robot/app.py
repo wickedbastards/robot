@@ -9,8 +9,8 @@ import argparse
 app = Flask(__name__)
 camera = cv2.VideoCapture(0)  # веб камера
 
-camera.set(cv2.CAP_PROP_FRAME_WIDTH, 320)   # Определенные разрешения с некоторыми камерами могут не работать, поэтому для
-camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)  # уменьшения разрешения можно также использовать resize в методе getFramesGenerator
+camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)   # Определенные разрешения с некоторыми камерами могут не работать, поэтому для
+camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 360)  # уменьшения разрешения можно также использовать resize в методе getFramesGenerator
 
 controlX, controlY = 0.0, 0.0  # глобальные переменные вектора движения робота. Диапазоны: [-1, 1]
 
@@ -26,7 +26,7 @@ def getFramesGenerator():
         success, frame = camera.read()  # Получаем фрейм с камеры
 
         if success:
-            frame = cv2.resize(frame, (180, 120), interpolation=cv2.INTER_AREA)  # уменьшаем разрешение кадров (если
+            frame = cv2.resize(frame, (640, 360), interpolation=cv2.INTER_AREA)  # уменьшаем разрешение кадров (если
             # видео тупит, можно уменьшить еще больше)
             height, width = frame.shape[0:2]  # получаем разрешение кадра
 
